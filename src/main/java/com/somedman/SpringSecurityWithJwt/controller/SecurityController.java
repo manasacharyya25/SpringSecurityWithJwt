@@ -13,4 +13,10 @@ public class SecurityController
   {
     return "landingPage";
   }
+
+  @GetMapping("/home")
+  public String homeView()
+  {
+    return "home";
+  }
 }
