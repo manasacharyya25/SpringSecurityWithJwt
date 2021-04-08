@@ -6,8 +6,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -22,8 +26,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception
   {
-    auth.inMemoryAuthentication().withUser("foo").
-        password(passwordEncoder().encode("foo")).roles("USER");
+    auth.userDetailsService(userDetailsService());
+  }
+
+  @Override
+  protected UserDetailsService userDetailsService()
+  {
+    UserDetails foo = User.builder().username("foo").password(passwordEncoder().encode("foo")).roles("USER").build();
+
+    return new InMemoryUserDetailsManager(foo);
   }
 
   @Bean
