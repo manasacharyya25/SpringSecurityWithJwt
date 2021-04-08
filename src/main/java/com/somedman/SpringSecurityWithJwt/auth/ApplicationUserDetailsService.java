@@ -1,32 +1,28 @@
 package com.somedman.SpringSecurityWithJwt.auth;
 
-import com.somedman.SpringSecurityWithJwt.entity.ApplicationUser;
-import org.springframework.context.annotation.Bean;
+import com.somedman.SpringSecurityWithJwt.repository.ApplicationUserRepository;
+import com.somedman.SpringSecurityWithJwt.security.ApplicationPasswordEncoder;
+import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 public class ApplicationUserDetailsService implements UserDetailsService
 {
+
+  @Autowired
+  private ApplicationUserRepository userRepo;
+  @Autowired
+  private ApplicationPasswordEncoder appPassEncoder;
+
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
   {
-    return new ApplicationUser("foo",
-        passwordEncoder().encode("foo"),
-        null,
-        "email-address",
-        true,
-        true,
-        true,
-        true
-        );
-  }
-
-  @Bean
-  public PasswordEncoder passwordEncoder()
-  {
-    return new BCryptPasswordEncoder();
+    val dbResponse = userRepo.findByUsername(username);
+    dbResponse.setPassword(appPassEncoder.passwordEncoder().encode(dbResponse.getPassword()));
+    return  dbResponse;
   }
 }
