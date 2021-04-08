@@ -1,16 +1,14 @@
 package com.somedman.SpringSecurityWithJwt.security;
 
+import com.somedman.SpringSecurityWithJwt.auth.ApplicationUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -26,9 +24,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter
   @Bean
   protected UserDetailsService userDetailsService()
   {
-    UserDetails foo = User.builder().username("foo").password(passwordEncoder().encode("foo")).roles("USER").build();
-
-    return new InMemoryUserDetailsManager(foo);
+    return new ApplicationUserDetailsService();
   }
 
   @Bean
