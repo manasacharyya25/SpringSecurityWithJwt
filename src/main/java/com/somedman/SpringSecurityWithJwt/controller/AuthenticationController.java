@@ -10,9 +10,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -32,7 +34,7 @@ public class AuthenticationController {
 
             final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
-            final String secretKey = "SECretSeccrettSescertaskshdfas42343";
+            final String secretKey = "SECretSeccrettSescertaskshdfas42343rtyerty4565ethet7567845utyjtyu84578rtyui4ru4567SECretSeccrettSescertaskshdfas";
 
             final String jwtToken = Jwts.builder()
                     .setSubject(userDetails.getUsername())
@@ -46,7 +48,7 @@ public class AuthenticationController {
                     .build();
 
         } catch (AuthenticationException ex) {
-            throw new Exception(ex);
+            throw new RuntimeException("User Authentication Failed");
         }
     }
 }
