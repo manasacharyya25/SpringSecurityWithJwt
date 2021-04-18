@@ -29,14 +29,26 @@ Follow <a href="https://github.com/manasacharyya25/SpringSecurityWithJwt/commits
   
 <ul>
  <li>Clone <a href="https://github.com/manasacharyya25/SpringSecurityWithJwt/tree/JwtAuthentication">JwtAuthentication Branch</a></li>
- <li>In Root Directory, Execute  <strong><i>gradlew build</i><strong>. This will pull all project dependencies and build the Java Executable</li>
- <li>Once Build Completes, Execute <strong><i>gradlew bootRun</i><strong> to start the application. The application will be hosted at http://localhost:8080</li>
+ <li>In Root Directory, Execute 
+
+```
+			gradlew build
+```
+ This will pull all project dependencies and build the Java Executable</li>
+ 
+ <li>Once Build Completes, Execute 
+
+```
+			gradlew bootRun
+```
+ to start the application. The application will be hosted at http://localhost:8080</li>
 </ul>
   
 ### Application Details
  <ul>
-    <h5>The application by default works with in-memory H2 Database. To change this behaviour and use PostgreSQL, steps to follow:</h5>
-     <li>In <strong><i>build.gradle</i></strong> under <strong>dependencies</strong>, comment out </li>
+    The application by default works with <strong>in-memory H2 Database</strong>. To change this behaviour and use <strong>PostgreSQL</strong>, steps to follow: <br />
+    
+   <li>In <strong><i>build.gradle</i></strong> under <strong>dependencies</strong>, comment out </li>
 
 ```
       runtimeOnly 'com.h2database:h2'
