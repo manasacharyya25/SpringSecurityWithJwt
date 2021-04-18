@@ -3,7 +3,7 @@
 ## About 
  Demo Application for integrating Spring Security with Spring Boot Application, that increments gradually from <strong>Basic Authentication</strong> to <strong>Form Based Authentication</strong> and finally <strong>JWT Authentication</strong>.
  
-Follow Commit History to understand the incremental changes made in the application.
+Follow <a href="https://github.com/manasacharyya25/SpringSecurityWithJwt/commits/main">Commit History</a> to understand the incremental changes made in the application.
 
 
  
