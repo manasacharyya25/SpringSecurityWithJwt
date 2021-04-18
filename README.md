@@ -59,7 +59,7 @@ Follow <a href="https://github.com/manasacharyya25/SpringSecurityWithJwt/commits
 ```
 	runtimeOnly 'org.postgresql:postgresql'
 ```
-<li> Inclue Database Configuration in <strong><i>application.yml</i><strong></li>
+<li> Inclue Database Configuration in <strong><i>application.yml</i></strong></li>
 
 ```
 	datasource:  
